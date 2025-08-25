@@ -9,12 +9,10 @@ export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/orders?expand=products')
-      .then((response) => {
-        setOrders(response.data);
-      })
+    axios.get('/api/orders?expand=products').then((response) => {
+      setOrders(response.data);
+    });
   }, []);
-
 
   return (
     <>
@@ -33,7 +31,7 @@ export function OrdersPage({ cart }) {
                   <div className="order-header-left-section">
                     <div className="order-date">
                       <div className="order-header-label">Order Placed:</div>
-                      <div>{dayjs(order.orderTimeMs).format('MMMM D')}</div>
+                      <div>{dayjs(order.orderTimeMs).format("MMMM D")}</div>
                     </div>
                     <div className="order-total">
                       <div className="order-header-label">Total:</div>
@@ -60,15 +58,22 @@ export function OrdersPage({ cart }) {
                             {orderProduct.product.name}
                           </div>
                           <div className="product-delivery-date">
-                            Arriving on: {dayjs(orderProduct.estimatedDeliveryMs).format('MMMM D')}
+                            Arriving on:{" "}
+                            {dayjs(orderProduct.estimatedDeliveryMs).format(
+                              "MMMM D"
+                            )}
                           </div>
-                          <div className="product-quantity">Quantity: {orderProduct.quantity}</div>
+                          <div className="product-quantity">
+                            Quantity: {orderProduct.quantity}
+                          </div>
                           <button className="buy-again-button button-primary">
                             <img
                               className="buy-again-icon"
                               src="images/icons/buy-again.png"
                             />
-                            <span className="buy-again-message">Add to Cart</span>
+                            <span className="buy-again-message">
+                              Add to Cart
+                            </span>
                           </button>
                         </div>
 
