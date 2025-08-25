@@ -1,6 +1,7 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect, useState, Fragment } from "react";
+import { Link } from "react-router";
 import { Header } from "../../components/Header";
 import { formatMoney } from "../../utils/money";
 import "./OrdersPage.css";
@@ -17,6 +18,7 @@ export function OrdersPage({ cart }) {
   return (
     <>
       <title>Orders</title>
+      <link rel="icon" type="image/svg+xml" href="orders-favicon.png" />
 
       <Header cart={cart} />
 
