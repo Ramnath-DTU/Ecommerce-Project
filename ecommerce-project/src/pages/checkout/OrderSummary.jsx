@@ -22,7 +22,7 @@ export function OrderSummary({ cart, deliveryOptions, loadCart }) {
                 loadCart={loadCart}
               />
 
-              <CartItemDetails cartItem={cartItem} />
+              <CartItemDetails cartItem={cartItem} loadCart={loadCart} />
             </div>
           );
         })}
