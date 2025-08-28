@@ -72,14 +72,14 @@ Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, 
 
 ## 📂 Project Structure
 
-├── server.js # Express app entrypoint
-├── /api # Routes: products, cart, orders, etc.
-├── /models # Sequelize models
-├── /default-data # Seed data (products, orders, delivery options)
-├── /dist # Frontend SPA build
-├── /images # Static product images
-├── /frontend # React source (components, pages, routes)
-└── database.sqlite # Persisted SQLite DB
+<br>├── server.js # Express app entrypoint</br>
+<br>├── /api # Routes: products, cart, orders, etc.</br>
+<br>├── /models # Sequelize models</br>
+<br>├── /default-data # Seed data (products, orders, delivery options)</br>
+<br>├── /dist # Frontend SPA build</br>
+<br>├── /images # Static product images</br>
+<br>├── /frontend # React source (components, pages, routes)</br>
+<br>└── database.sqlite # Persisted SQLite DB</br>
 
 ---
 
