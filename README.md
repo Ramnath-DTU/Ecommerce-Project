@@ -142,11 +142,6 @@ npm start
 
 ---
 
-## 📸 Screenshots (suggestion to add)
-
-
----
-
 💡 **In summary:**  
 This project is a complete **e-commerce starter app** demonstrating UI, backend CRUD APIs, and database ORM integration — deployable locally (SQLite) or in production (AWS RDS + Node.js server).
 
