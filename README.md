@@ -1,7 +1,35 @@
 # 🛍️ Full‑Stack E‑Commerce App
 
 A modern **full-stack e-commerce web application** built with **React (frontend)** and **Node.js + Express + Sequelize (backend)**.  
-Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, with persistence via SQLite (default) or AWS RDS (MySQL/Postgres) in production.
+Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, with persistence via SQLite in production.
+
+---
+
+**<h2>Table of Contents</h2>**
+
+### •	 <ins>Features</ins>
+
+### •	 <ins>Demo</ins>
+
+### •	 <ins>Usage</ins>
+
+### •	 <ins>Tech Stack</ins>
+
+### •	 <ins>Project Structure</ins>
+
+### •	 <ins>Getting Started</ins>
+
+### •	 <ins>Preview</ins>
+
+### •	 <ins>Environment Variables</ins>
+
+### •	 <ins>Commit History Highlights</ins>
+
+### •	 <ins>Future Enhancements</ins>
+
+### •	 <ins>Contributing</ins>
+
+### •	 <ins>Contact</ins>
 
 ---
 
@@ -25,7 +53,7 @@ Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, 
   - `/api/orders` – create & fetch user orders  
   - `/api/payment-summary` – compute total + taxes  
   - `/api/reset` – reset database with seed data  
-- **Sequelize ORM** v6 models:
+- **Sequelize** v6 models:
   - `Product` (UUID, rating, keywords as array getter/setter)  
   - `Order` (UUID, products array, computed totals, order time)  
   - `CartItem` (productId, qty, deliveryOptionId)  
@@ -46,7 +74,21 @@ Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, 
 - **Orders**:
   - Created from the cart  
   - Stores product list as JSON  
-  - Cleans up cart after checkout  
+  - Cleans up cart after checkout
+
+---
+
+## Demo
+Add your live demo URL here.
+
+---
+
+## Usage
+- Browse products, filter via search, and add items to the cart.
+- Update quantities, remove items, and choose delivery options.
+- Proceed to checkout to create an order.
+- View orders and track them with estimated delivery dates.
+- Review payment summary for subtotal, shipping, tax, and total.
 
 ---
 
@@ -103,6 +145,11 @@ npm start
 
 ---
 
+## Preview
+Add screenshots or GIFs for Home, Cart, Checkout, Orders, and Tracking pages.
+
+---
+
 ## 🌐 Environment Variables
 
 | Variable         | Description                            | Example                  |
@@ -142,6 +189,10 @@ npm start
 
 ---
 
-💡 **In summary:**  
-This project is a complete **e-commerce starter app** demonstrating UI, backend CRUD APIs, and database ORM integration — deployable locally (SQLite) or in production (AWS RDS + Node.js server).
+## Contributing
+Contributions are welcome. Please fork the repository and open a pull request. For major changes, open an issue first to discuss what you would like to change.
 
+---
+
+## Contact
+For support or inquiries, please open an issue or email: ramnath2544@gmail.com.
