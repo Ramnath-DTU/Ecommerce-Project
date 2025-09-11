@@ -19,8 +19,6 @@ Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, 
 
 ### •	 <ins>Getting Started</ins>
 
-### •	 <ins>Preview</ins>
-
 ### •	 <ins>Environment Variables</ins>
 
 ### •	 <ins>Commit History Highlights</ins>
@@ -79,7 +77,8 @@ Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, 
 ---
 
 ## Demo
-Add your live demo URL here.
+
+https://github.com/user-attachments/assets/d14bb479-bdb4-43ab-b98c-a15ad2222ef4
 
 ---
 
@@ -142,11 +141,6 @@ npm run build
 
 ### 4. Start in production
 npm start
-
----
-
-## Preview
-Add screenshots or GIFs for Home, Cart, Checkout, Orders, and Tracking pages.
 
 ---
 
