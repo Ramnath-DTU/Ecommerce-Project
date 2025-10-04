@@ -82,6 +82,241 @@ https://github.com/user-attachments/assets/d14bb479-bdb4-43ab-b98c-a15ad2222ef4
 
 ---
 
+## Documentation
+Here's a list of all the URL Paths you can use with this backend and what each URL Path does.
+
+**Products, Delivery Options**
+- [GET /api/products](#get-apiproducts)
+- [GET /api/delivery-options](#get-apidelivery-options)
+
+**Cart**
+- [GET /api/cart-items](#get-apicart-items)
+- [POST /api/cart-items](#post-apicart-items)
+- [PUT /api/cart-items/:productId](#put-apicart-itemsproductid)
+- [DELETE /api/cart-items/:productId](#delete-apicart-itemsproductid)
+
+**Orders**
+- [GET /api/orders](#get-apiorders)
+- [POST /api/orders](#post-apiorders)
+- [GET /api/orders/:orderId](#get-apiordersorderid)
+
+**Payment Summary, Reset**
+- [GET /api/payment-summary](#get-apipayment-summary)
+- [POST /api/reset](#post-apireset)
+  
+### GET /api/products
+Returns a list of products.
+
+**Query Parameters:**
+- `search=...` (optional): Search term to find products by name or keywords
+
+**Response:**
+```js
+[
+  {
+    "id": "uuid",
+    "image": "string",
+    "name": "string",
+    "rating": {
+      "stars": "number",
+      "count": "number"
+    },
+    "priceCents": "number",
+    "keywords": ["string"]
+  }
+]
+```
+
+### GET /api/delivery-options
+Returns a list of all delivery options.
+
+**Query Parameters:**
+- `expand=estimatedDeliveryTime` (optional): includes estimated delivery times
+
+**Response:**
+```js
+[
+  {
+    "id": "string",
+    "deliveryDays": "number",
+    "priceCents": "number",
+    // Only included when expand=estimatedDeliveryTime
+    "estimatedDeliveryTimeMs": "number"
+  }
+]
+```
+
+### GET /api/cart-items
+Returns all items in the cart.
+
+**Query Parameters:**
+- `expand=product` (optional): include full product details
+
+**Response:**
+```js
+[
+  {
+    "productId": "uuid",
+    "quantity": "number",
+    "deliveryOptionId": "string",
+      // product object, only when expand=product
+    "product": "object"
+  }
+]
+```
+
+### POST /api/cart-items
+Adds a product to the cart.
+
+**Request:**
+```js
+{
+  "productId": "uuid",
+  // Must be between 1 and 10
+  "quantity": "number"
+}
+```
+
+**Response:**
+```js
+{
+  "productId": "uuid",
+  "quantity": "number",
+  "deliveryOptionId": "string",
+}
+```
+
+### PUT /api/cart-items/:productId
+Updates a cart item.
+
+**URL Parameters:**
+- `productId`: ID of the product to update
+
+**Request:**
+```js
+{
+   // Optional, must be ≥ 1
+  "quantity": "number",
+  
+   // Optional
+  "deliveryOptionId": "string"
+}
+```
+
+**Response:**
+```js
+{
+  "productId": "uuid",
+  "quantity": "number",
+  "deliveryOptionId": "string",
+}
+```
+
+### DELETE /api/cart-items/:productId
+Removes an item from the cart.
+
+**URL Parameters:**
+- `productId`: ID of the product to remove
+
+**Response:**
+- Status: 204 (No response)
+
+### GET /api/orders
+Returns all orders, sorted by most recent first.
+
+**Query Parameters:**
+- `expand=products` (optional): include full product details
+
+**Response:**
+```js
+[
+  {
+    "id": "uuid",
+    "orderTimeMs": "number",
+    "totalCostCents": "number",
+    "products": [
+      {
+        "productId": "uuid",
+        "quantity": "number",
+        "estimatedDeliveryTimeMs": "number",
+         // product object, only when expand=products
+        "product": "object"
+      }
+    ]
+  }
+]
+```
+
+### POST /api/orders
+Creates a new order from the current cart items.
+
+**Response:**
+```js
+{
+  "id": "uuid",
+  "orderTimeMs": "number",
+  "totalCostCents": "number",
+  "products": [
+    {
+      "productId": "uuid",
+      "quantity": "number",
+      "estimatedDeliveryTimeMs": "number",
+    }
+  ]
+}
+```
+- Side effect: Cart is emptied
+
+### GET /api/orders/:orderId
+Returns a specific order.
+
+**URL Parameters:**
+- `orderId`: ID of the order
+
+**Query Parameters:**
+- `expand=products` (optional): include full product details
+
+**Response:**
+```js
+{
+  "id": "uuid",
+  "orderTimeMs": "number",
+  "totalCostCents": "number",
+  "products": [
+    {
+      "productId": "uuid",
+      "quantity": "number",
+      "estimatedDeliveryTimeMs": "number",
+        // product object, only when expand=products
+      "product": "object"
+    }
+  ]
+}
+```
+
+### GET /api/payment-summary
+Calculates and returns the payment summary for the current cart.
+
+**Response:**
+```js
+{
+  "totalItems": "number",
+  "productCostCents": "number",
+  "shippingCostCents": "number",
+  "totalCostBeforeTaxCents": "number",
+  "taxCents": "number",
+  "totalCostCents": "number"
+}
+```
+
+### POST /api/reset
+Resets the database to its default state.
+
+**Response:**
+- Status: 204 No Response
+ 
+---
+
 ## Usage
 - Browse products, filter via search, and add items to the cart.
 - Update quantities, remove items, and choose delivery options.
@@ -113,14 +348,31 @@ https://github.com/user-attachments/assets/d14bb479-bdb4-43ab-b98c-a15ad2222ef4
 
 ## 📂 Project Structure
 
-<br>├── server.js # Express app entrypoint</br>
-<br>├── /api # Routes: products, cart, orders, etc.</br>
-<br>├── /models # Sequelize models</br>
-<br>├── /default-data # Seed data (products, orders, delivery options)</br>
-<br>├── /dist # Frontend SPA build</br>
-<br>├── /images # Static product images</br>
-<br>├── /frontend # React source (components, pages, routes)</br>
-<br>└── database.sqlite # Persisted SQLite DB</br>
+### Overview
+
+The ecommerce backend has been reorganized following the Model-View-Controller (MVC) architecture pattern for better code organization, maintainability, and separation of concerns.
+
+### Directory Structure
+
+```
+ecommerce-backend/
+├── models/                 # Data models (Sequelize)
+├── controllers/            # Business logic layer
+├── views/                 # Presentation layer
+├── routes/                # URL routing layer
+├── defaultData/          # Seed data
+├── images/              # Static assets
+├── server.js            # Application entry point
+└── package.json
+```
+
+### Benefits of MVC Structure
+
+1. **Maintainability**: Code organized by function
+2. **Testability**: Controllers tested independently
+3. **Scalability**: Easy to add new features
+4. **Team Development**: Multiple developers can work simultaneously
+5. **Reusability**: Controllers and models reused across views/routes
 
 ---
 
@@ -155,22 +407,6 @@ npm start
 | `RDS_PASSWORD`   | Database password                      | `secret`                 |
 | `RDS_DB_NAME`    | DB name                                | `ecommerce`              |
 | `RDS_PORT`       | DB port                                | `3306` (MySQL)           |
-
----
-
-## 📝 Commit History Highlights
-
-- **Frontend Migration:** Converted all pages (Home, Checkout, Orders, Tracking) into React with React Router.  
-- **Backend Integration:** Added ecommerce backend in Express + Sequelize with SQLite (later MySQL/Postgres support).  
-- **Core Features:**  
-  - Add to Cart & Cart Management (CRUD).  
-  - Delivery option selection.  
-  - Create Orders & Payment Summary (with tax).  
-  - Order tracking & Cart state shared across pages.  
-- **UX Improvements:**  
-  - Interactive features (search bar, update button, add-to-cart message feedback).  
-  - Async/await refactors.  
-  - Componentized headers, delivery, and summary sections.  
 
 ---
 
