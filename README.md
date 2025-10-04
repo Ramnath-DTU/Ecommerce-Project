@@ -11,6 +11,8 @@ Supports **shopping cart**, **orders**, **delivery options**, and **tracking**, 
 
 ### •	 <ins>Demo</ins>
 
+### •	 <ins>Documentation</ins>
+
 ### •	 <ins>Usage</ins>
 
 ### •	 <ins>Tech Stack</ins>
