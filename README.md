@@ -383,18 +383,13 @@ ecommerce-backend/
 ### 1. Install dependencies
 npm install
 
-### 2. Run in development
-npm run dev
+### 2. Run in development(frontend)
+- cd ecommerce-project
+- npm run dev
 
-- Starts **Express backend** with **Nodemon**  
-- Runs frontend React app (via your setup or bundled dist)  
-
-### 3. Build frontend (if in frontend project folder)
-npm run build
-
-
-### 4. Start in production
-npm start
+### Starts **Express backend** with **Nodemon**  
+- cd ecommerce-backend (In another terminal)
+- npm run dev
 
 ---
 
